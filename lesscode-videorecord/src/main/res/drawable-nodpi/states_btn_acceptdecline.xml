@@ -15,8 +15,7 @@
   ~  limitations under the License.
   -->
 
-<resources>
-
-    <string name="app_name">LessCode Video Record</string>
-
-</resources>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@drawable/bg_btn_pressed" android:state_pressed="true" />
+    <item android:drawable="@android:color/transparent" />
+</selector>
