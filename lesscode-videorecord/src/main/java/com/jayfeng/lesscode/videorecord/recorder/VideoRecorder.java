@@ -55,7 +55,6 @@ public class VideoRecorder implements OnInfoListener, CapturePreviewInterface {
         mRecorderInterface = recorderInterface;
         mVideoFile = videoFile;
         mCameraWrapper = cameraWrapper;
-
         initializeCameraAndPreview(previewHolder, useFrontFacingCamera);
     }
 
@@ -85,11 +84,10 @@ public class VideoRecorder implements OnInfoListener, CapturePreviewInterface {
 
     protected void startRecording() {
         mRecording = false;
-
         if (!initRecorder()) return;
         if (!prepareRecorder()) return;
         if (!startRecorder()) return;
-
+        //android.hardware.Camera.Parameters.setRotation(int)
         mRecording = true;
         mRecorderInterface.onRecordingStarted();
         CLog.d(CLog.RECORDER, "Successfully started recording - outputfile: " + mVideoFile.getFullPath());

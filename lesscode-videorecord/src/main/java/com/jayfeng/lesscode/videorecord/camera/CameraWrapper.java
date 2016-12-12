@@ -77,6 +77,8 @@ public class CameraWrapper {
     public void startPreview(final SurfaceHolder holder) throws IOException {
         mNativeCamera.setNativePreviewDisplay(holder);
         mNativeCamera.startNativePreview();
+        //修改
+        mNativeCamera.setDisplayOrientation(90);
     }
 
     public void stopPreview() throws Exception {
@@ -140,8 +142,10 @@ public class CameraWrapper {
     public int getRotationCorrection() {
         int displayRotation = mDisplayRotation * 90;
         if (mNativeCamera.isFrontFacingCamera()) {
-            int mirroredRotation = (mNativeCamera.getCameraOrientation() + displayRotation) % 360;
-            return (360 - mirroredRotation) % 360;
+// 修改
+//            int mirroredRotation = (mNativeCamera.getCameraOrientation() + displayRotation) % 360;
+//            return (360 - mirroredRotation) % 360;
+            return (mNativeCamera.getCameraOrientation() - displayRotation + 360) % 360;
         } else {
             return (mNativeCamera.getCameraOrientation() - displayRotation + 360) % 360;
         }
