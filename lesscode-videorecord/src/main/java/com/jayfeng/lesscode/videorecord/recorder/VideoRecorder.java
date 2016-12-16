@@ -19,6 +19,7 @@ package com.jayfeng.lesscode.videorecord.recorder;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.media.MediaRecorder.OnInfoListener;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 import com.jayfeng.lesscode.videorecord.CLog;
@@ -137,6 +138,8 @@ public class VideoRecorder implements OnInfoListener, CapturePreviewInterface {
         RecordingSize size = mCameraWrapper.getSupportedRecordingSize(mCaptureConfiguration.getVideoWidth(), mCaptureConfiguration.getVideoHeight());
         baseProfile.videoFrameWidth = size.width;
         baseProfile.videoFrameHeight = size.height;
+        Log.d("---------------", "===========size.width=:" + size.width);
+        Log.d("---------------", "===========size.height=:" + size.height);
         baseProfile.videoBitRate = mCaptureConfiguration.getVideoBitrate();
 
         baseProfile.audioCodec = mCaptureConfiguration.getAudioEncoder();
