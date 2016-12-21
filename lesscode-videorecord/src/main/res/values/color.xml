@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app_item_bg_color_pressed">#eeeeee</color>
+    <color name="header_menu_text_pressed_color">#3b3b3b</color>
+    <color name="header_menu_text_normal_color">#4b4b4b</color>
+    <color name="app_item_divider_color">#efefef</color>
+    <color name="progress_color">#DA574B</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+</resources>

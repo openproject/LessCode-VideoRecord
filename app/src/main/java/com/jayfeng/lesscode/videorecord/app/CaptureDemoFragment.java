@@ -182,6 +182,7 @@ public class CaptureDemoFragment extends Fragment implements OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (resultCode == Activity.RESULT_OK) {
+
             filename = data.getStringExtra(VideoCaptureActivity.EXTRA_OUTPUT_FILENAME);
             statusMessage = String.format(getString(R.string.status_capturesuccess), filename);
         } else if (resultCode == Activity.RESULT_CANCELED) {
@@ -217,7 +218,7 @@ public class CaptureDemoFragment extends Fragment implements OnClickListener {
     }
 
     private CaptureConfiguration createCaptureConfiguration() {
-        final CaptureResolution resolution = getResolution(resolutionSp.getSelectedItemPosition());
+        final CaptureResolution resolution = getResolution(2);
         final CaptureQuality quality = getQuality(qualitySp.getSelectedItemPosition());
         int fileDuration = CaptureConfiguration.NO_DURATION_LIMIT;
         try {
@@ -233,7 +234,7 @@ public class CaptureDemoFragment extends Fragment implements OnClickListener {
         }
         boolean showTimer = showTimerCb.isChecked();
         boolean allowFrontCamera = allowFrontCameraCb.isChecked();
-        return new CaptureConfiguration(resolution, quality, fileDuration, filesize, showTimer, allowFrontCamera);
+        return new CaptureConfiguration(resolution, quality, 10, filesize, true, true);
     }
 
     private CaptureQuality getQuality(int position) {

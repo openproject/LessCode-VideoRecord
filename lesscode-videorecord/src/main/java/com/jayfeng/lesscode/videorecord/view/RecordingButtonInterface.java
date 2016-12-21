@@ -26,4 +26,11 @@ public interface RecordingButtonInterface {
 
     void onSwitchCamera(boolean isFrontFacingSelected);
 
+    void onBackClicked();
+
+    void onVideoPlayClicked();
+
+    void onRecordingonClicked();
+
+
 }

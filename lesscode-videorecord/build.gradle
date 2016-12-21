@@ -9,7 +9,7 @@ android {
     buildToolsVersion "25.0.0"
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -30,7 +30,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'fm.jiecao:jiecaovideoplayer:5.1'
+    compile 'com.squareup.picasso:picasso:2.5.1'
     testCompile 'junit:junit:4.12'
 }
 
@@ -44,7 +46,8 @@ install {
         pom {
             project {
                 packaging 'aar'
-                name 'Less Code On Video Record For Android'                                   // #CONFIG# // project title
+                name 'Less Code On Video Record For Android'
+                // #CONFIG# // project title
                 url siteUrl
                 // Set your license
                 licenses {
@@ -55,9 +58,12 @@ install {
                 }
                 developers {
                     developer {
-                        id 'jayfeng'                                           // #CONFIG# // your user id (you can write your nickname)
-                        name 'jian.feng'                                       // #CONFIG# // your user name
-                        email '673592063@qq.com'                               // #CONFIG# // your email
+                        id 'jayfeng'
+                        // #CONFIG# // your user id (you can write your nickname)
+                        name 'jian.feng'
+                        // #CONFIG# // your user name
+                        email '673592063@qq.com'
+                        // #CONFIG# // your email
                     }
                 }
                 scm {
@@ -81,7 +87,7 @@ artifacts {
 
 Properties properties = new Properties()
 boolean isHasFile = false
-if (project.rootProject.file('local.properties') != null){
+if (project.rootProject.file('local.properties') != null) {
     isHasFile = true
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
 }
@@ -91,7 +97,8 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "lesscode-videorecord"                                                 // #CONFIG# project name in jcenter
+        name = "lesscode-videorecord"
+        // #CONFIG# project name in jcenter
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]

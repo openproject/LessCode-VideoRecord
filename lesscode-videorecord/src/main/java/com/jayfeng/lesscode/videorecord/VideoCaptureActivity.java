@@ -20,8 +20,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore.Video.Thumbnails;
+import android.util.Log;
 import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
@@ -35,6 +37,8 @@ import com.jayfeng.lesscode.videorecord.recorder.VideoRecorder;
 import com.jayfeng.lesscode.videorecord.recorder.VideoRecorderInterface;
 import com.jayfeng.lesscode.videorecord.view.RecordingButtonInterface;
 import com.jayfeng.lesscode.videorecord.view.VideoCaptureView;
+
+import static com.jayfeng.lesscode.videorecord.VideoPlayActivity.VIDEO_URL;
 
 public class VideoCaptureActivity extends Activity implements RecordingButtonInterface, VideoRecorderInterface {
 
@@ -148,6 +152,45 @@ public class VideoCaptureActivity extends Activity implements RecordingButtonInt
     }
 
     @Override
+    public void onBackClicked() {
+        finish();
+    }
+
+    @Override
+    public void onVideoPlayClicked() {
+        playVideo();
+    }
+
+    @Override
+    public void onRecordingonClicked() {
+        if (mVideoCaptureView.mVideoTime <= 3) {
+            Toast.makeText(this, "录制时间太短，重新录制", Toast.LENGTH_SHORT).show();
+            finishCancelled();
+        } else {
+            try {
+                mVideoRecorder.stopRecording();
+            } catch (AlreadyUsedException e) {
+                CLog.d(CLog.ACTIVITY, "Cannot toggle recording after cleaning up all resources");
+            }
+        }
+    }
+
+    public void playVideo() {
+//        if (mVideoFile.getFullPath() == null) return;
+//        final Intent videoIntent = new Intent(Intent.ACTION_VIEW);
+//        videoIntent.setDataAndType(Uri.parse(mVideoFile.getFullPath()), "video/*");
+//        try {
+//            startActivity(videoIntent);
+//        } catch (ActivityNotFoundException e) {
+//        }
+        final Intent intent = new Intent(VideoCaptureActivity.this, VideoPlayActivity.class);
+        intent.putExtra(VIDEO_URL, Uri.parse(mVideoFile.getFullPath()) + "");
+        Log.e("com.lez", "url:++++" + Uri.parse(mVideoFile.getFullPath()));
+        startActivity(intent);
+
+    }
+
+    @Override
     public void onRecordingStopped(String message) {
         if (message != null) {
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
@@ -168,10 +211,15 @@ public class VideoCaptureActivity extends Activity implements RecordingButtonInt
     }
 
     private void finishCompleted() {
-        final Intent result = new Intent();
-        result.putExtra(EXTRA_OUTPUT_FILENAME, mVideoFile.getFullPath());
-        this.setResult(RESULT_OK, result);
-        finish();
+        try {
+            mVideoRecorder.stopRecording();
+        } catch (AlreadyUsedException e) {
+            CLog.d(CLog.ACTIVITY, "Cannot toggle recording after cleaning up all resources");
+        }
+//        final Intent result = new Intent();
+//        result.putExtra(EXTRA_OUTPUT_FILENAME, mVideoFile.getFullPath());
+//        this.setResult(RESULT_OK, result);
+//        finish();
     }
 
     private void finishCancelled() {
