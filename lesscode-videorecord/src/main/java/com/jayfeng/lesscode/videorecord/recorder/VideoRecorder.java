@@ -148,8 +148,8 @@ public class VideoRecorder implements OnInfoListener, CapturePreviewInterface {
         RecordingSize size = mCameraWrapper.getSupportedRecordingSize(mCaptureConfiguration.getVideoWidth(), mCaptureConfiguration.getVideoHeight());
         baseProfile.videoFrameWidth = size.width;
         baseProfile.videoFrameHeight = size.height;
-        Log.d("---------------", "===========size.width=:" + size.width);
-        Log.d("---------------", "===========size.height=:" + size.height);
+        Log.d("---------------", "===========size.width=:" + size.width + ", video width:" + mCaptureConfiguration.getVideoWidth());
+        Log.d("---------------", "===========size.height=:" + size.height + ", video height:" + mCaptureConfiguration.getVideoHeight());
         baseProfile.videoBitRate = mCaptureConfiguration.getVideoBitrate();
 
         baseProfile.audioCodec = mCaptureConfiguration.getAudioEncoder();

@@ -51,7 +51,7 @@ public class CapturePreview implements SurfaceHolder.Callback {
 	}
 
 	@Override
-	public void surfaceChanged(final SurfaceHolder holder, final int format, final int width, final int height) {
+	public void surfaceChanged(final SurfaceHolder holder, final int format, int width, int height) {
 		if (mPreviewRunning) {
 			try {
 				mCameraWrapper.stopPreview();
@@ -61,6 +61,8 @@ public class CapturePreview implements SurfaceHolder.Callback {
 		}
 
 		try {
+			width = 640;
+			height = 480;
 			mCameraWrapper.configureForPreview(width, height);
 			CLog.d(CLog.PREVIEW, "Configured camera for preview in surface of " + width + " by " + height);
 		} catch (final RuntimeException e) {

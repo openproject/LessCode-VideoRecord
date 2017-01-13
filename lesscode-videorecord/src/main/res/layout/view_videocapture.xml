@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:android_custom="http://schemas.android.com/apk/res/com.jayfeng.lesscode.videorecord"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/videocapture_container_rl"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#ffffff"
-              android:fitsSystemWindows="true"
-              android:keepScreenOn="true"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/videocapture_container_rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:fitsSystemWindows="true"
+    android:keepScreenOn="true"
+    android:orientation="vertical">
 
     <include
         android:id="@+id/header"
-        layout="@layout/view_header"/>
+        layout="@layout/view_header" />
 
-    <RelativeLayout
+    <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_aspectRatio="75%"
+            app:layout_widthPercent="100%">
 
             <SurfaceView
                 android:id="@+id/videocapture_preview_sv"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </RelativeLayout>
 
-        <include layout="@layout/layout_recordingtime"/>
+        <include layout="@layout/layout_recordingtime" />
 
         <ImageView
             android:id="@+id/videocapture_preview_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"/>
-    </RelativeLayout>
+            android:visibility="gone" />
+    </android.support.percent.PercentRelativeLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="156dp"
+        android:layout_height="match_parent"
         android:background="#000000"
         android:gravity="center">
 
@@ -54,7 +54,7 @@
             android:layout_marginRight="60dp"
             android:scaleType="fitXY"
             android:src="@drawable/select_video_reset_icon"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -68,8 +68,7 @@
                 android:clickable="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/viewrecord_play"
-                android:visibility="gone"
-                />
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/videocapture_recordbtn_iv"
@@ -77,16 +76,14 @@
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 android:src="@drawable/videorecoder_default_start"
-                android:visibility="gone"
-                />
+                android:visibility="gone" />
 
             <com.jayfeng.lesscode.videorecord.view.RoundProgressBar
                 android:id="@+id/videocapture_recording"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:background="@drawable/videorecoder_default_start"
-                android:visibility="gone"
-                />
+                android:visibility="gone" />
 
         </RelativeLayout>
 
@@ -99,6 +96,6 @@
             android:layout_marginLeft="60dp"
             android:scaleType="fitXY"
             android:src="@drawable/select_video_commit_icon"
-            android:visibility="gone"/>
+            android:visibility="gone" />
     </LinearLayout>
 </LinearLayout>
